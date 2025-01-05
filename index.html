@@ -247,7 +247,7 @@
         </div>
         <div class="progress">
           <span class="skill">
-            <span>CSS</span> <i class="val">90%</i>
+            <span>CSS</span> <i class="val">80%</i>
           </span>
           <div class="progress-bar-wrap">
             <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
@@ -255,7 +255,7 @@
         </div>
         <div class="progress">
           <span class="skill">
-            <span>JavaScript</span> <i class="val">75%</i>
+            <span>JavaScript</span> <i class="val">85%</i>
           </span>
           <div class="progress-bar-wrap">
             <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
@@ -279,7 +279,7 @@
         </div>
         <div class="progress">
           <span class="skill">
-            <span>Blogging</span> <i class="val">55%</i>
+            <span>Blogging</span> <i class="val">65%</i>
           </span>
           <div class="progress-bar-wrap">
             <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
@@ -674,6 +674,7 @@
 
             <div class="col-lg-7">
               <form
+                id="contact-form"
                 action="forms/contact.php"
                 method="post"
                 class="php-email-form"
@@ -691,7 +692,7 @@
                       required=""
                     />
                   </div>
-
+            
                   <div class="col-md-6">
                     <label for="email-field" class="pb-2">Your Email</label>
                     <input
@@ -702,7 +703,7 @@
                       required=""
                     />
                   </div>
-
+            
                   <div class="col-md-12">
                     <label for="subject-field" class="pb-2">Subject</label>
                     <input
@@ -713,7 +714,7 @@
                       required=""
                     />
                   </div>
-
+            
                   <div class="col-md-12">
                     <label for="message-field" class="pb-2">Message</label>
                     <textarea
@@ -724,20 +725,34 @@
                       required=""
                     ></textarea>
                   </div>
-
+            
                   <div class="col-md-12 text-center">
                     <div class="loading">Loading</div>
                     <div class="error-message"></div>
                     <div class="sent-message">
-                      Your message has been sent. Thank you!
+                      Thank you for reaching out! However, our service is currently unavailable. Stay tuned for updates! 🦄✨
                     </div>
-
-                    <button type="submit">Send Message</button>
+            
+                    <button type="submit" onclick="showUnavailableMessage(event)">Send Message</button>
                   </div>
                 </div>
               </form>
             </div>
-            <!-- End Contact Form -->
+            
+            <script>
+              function showUnavailableMessage(event) {
+                event.preventDefault(); // Prevent form submission
+            
+                // Change the message displayed after clicking the "Send Message" button
+                const sentMessageDiv = document.querySelector('.sent-message');
+                sentMessageDiv.innerHTML = "Oops! 😅 Our service is temporarily unavailable. But don't worry, we'll be back soon! 🚀";
+                sentMessageDiv.style.display = "block"; // Show the message
+                
+                // Optionally, hide the loading message and show the "sent" message
+                document.querySelector('.loading').style.display = "none";
+              }
+            </script>
+            
           </div>
         </div>
       </section>
