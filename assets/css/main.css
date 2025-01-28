@@ -167,6 +167,17 @@ h6 {
   border: 8px solid color-mix(in srgb, var(--default-color), transparent 85%);
 }
 
+.project-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+.show-less {
+  display: none;
+}
+
 .header .logo {
   line-height: 1;
   margin-bottom: 15px;
