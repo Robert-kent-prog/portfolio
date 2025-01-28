@@ -788,7 +788,29 @@
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
+    <script>
+      // Initialize AOS for smooth transitions
+      AOS.init();
+  
+      // Toggle Show More/Less for project descriptions
+      function toggleDescription(projectId) {
+        const moreText = document.getElementById(`show-less-${projectId}`);
+        const btn = document.querySelector(`#desc-${projectId} + button`);
+  
+        if (moreText.style.display === "none") {
+          moreText.style.display = "inline";
+          btn.textContent = "Show Less";
+        } else {
+          moreText.style.display = "none";
+          btn.textContent = "Show More";
+        }
+      }
+  
+      // Initialize descriptions as hidden
+      document.querySelectorAll('.show-less').forEach(function(element) {
+        element.style.display = "none";
+      });
+    </script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
   </body>
