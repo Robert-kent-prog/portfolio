@@ -175,20 +175,33 @@
             </div>
       
             <!-- Project Card 2 -->
-            <div class="col-lg-3 col-md-6">
-              <div class="card project-card">
-                <img src="assets/img/project2.jpeg" class="card-img-top" alt="Project 2">
-                <div class="card-body">
-                  <h5 class="card-title">Project 2</h5>
-                  <p class="card-text" id="desc-2">
-                    This is a brief description of Project 2. It has cool features and solves real-world problems.
-                    <span class="show-less" id="show-less-2"> Here is the detailed description explaining its features and functionalities.</span>
-                  </p>
-                  <button class="btn btn-primary" onclick="toggleDescription(2)">Show More/Less</button>
-                  <a href="https://github.com/Robert-kent-prog/webproject" class="btn btn-secondary mt-2" target="_blank">View Code</a>
-                </div>
+          <!-- Project Card 2 -->
+          <div class="col-lg-3 col-md-6">
+            <div class="card project-card">
+              <img src="assets/img/project2.jpeg" class="card-img-top" alt="Project 2">
+              <div class="card-body">
+                <h5 class="card-title">Project 2: Student Management API</h5>
+                <p class="card-text" id="desc-2">
+                  A RESTful CRUD API built with Spring Boot and MongoDB for managing student data.
+                  <span class="show-less" id="show-less-2">
+                    🔹 Perform CRUD operations (Create, Read, Update, Delete) on student records.<br>
+                    🔹 Custom exception handling ensures robust error responses.<br>
+                    🔹 Integrated with MongoDB for flexible and scalable storage.<br>
+                    <br>
+                    Technologies used: 
+                    <span class="badge bg-primary">Spring Boot</span> 
+                    <span class="badge bg-primary">MongoDB</span> 
+                    <span class="badge bg-primary">Java</span> 
+                    <span class="badge bg-primary">Maven</span>.
+                  </span>
+                </p>
+                <!-- Button must be directly after the <p> -->
+                <!-- <button class="btn btn-primary" onclick="toggleDescription(1)">Show More/Less</button> -->
+                <button class="btn btn-primary" onclick="toggleDescription(2)">Show More/Less</button>
+                <a href="https://github.com/your-repo-link-here" class="btn btn-secondary mt-2" target="_blank">View Code</a>
               </div>
             </div>
+          </div>
       
             <!-- Project Card 3 -->
             <div class="col-lg-3 col-md-6">
@@ -986,26 +999,26 @@
     <script>
       // Initialize AOS for smooth transitions
       AOS.init();
-  
+      
       // Toggle Show More/Less for project descriptions
       function toggleDescription(projectId) {
-        const moreText = document.getElementById(`show-less-${projectId}`);
-        const btn = document.querySelector(`#desc-${projectId} + button`);
-  
-        if (moreText.style.display === "none") {
-          moreText.style.display = "inline";
-          btn.textContent = "Show Less";
-        } else {
-          moreText.style.display = "none";
-          btn.textContent = "Show More";
-        }
+      const moreText = document.getElementById(`show-less-${projectId}`);
+      const btn = document.querySelector(`#desc-${projectId} + button`);
+      
+      if (moreText.style.display === "none") {
+      moreText.style.display = "inline";
+      btn.textContent = "Show Less";
+      } else {
+      moreText.style.display = "none";
+      btn.textContent = "Show More";
       }
-  
+      }
+      
       // Initialize descriptions as hidden
       document.querySelectorAll('.show-less').forEach(function(element) {
-        element.style.display = "none";
+      element.style.display = "none";
       });
-    </script>
+      </script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
   </body>
