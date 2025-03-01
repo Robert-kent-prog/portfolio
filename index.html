@@ -917,7 +917,6 @@
                 id="contact-form"
                 action="https://script.google.com/macros/s/AKfycbw-wmwFE7npIa1VA_0xZdxHZdlfXZtScHMFdhCz8xjiuNKoq8wZ5zozuiopC_u4T3fA8w/exec"
                 method="POST"
-                target="_blank"
                 class="php-email-form"
                 data-aos="fade-up"
                 data-aos-delay="200"
@@ -927,7 +926,7 @@
                     <label for="name-field" class="pb-2">Your Name</label>
                     <input
                       type="text"
-                      name="your-name" 
+                      name="your-name"
                       id="name-field"
                       class="form-control"
                       required
@@ -950,7 +949,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      name="your-subject" 
+                      name="your-subject"
                       id="subject-field"
                       required
                     />
@@ -960,7 +959,7 @@
                     <label for="message-field" class="pb-2">Message</label>
                     <textarea
                       class="form-control"
-                      name="your-message" 
+                      name="your-message"
                       rows="10"
                       id="message-field"
                       required
@@ -968,12 +967,19 @@
                   </div>
             
                   <div class="col-md-12 text-center">
-                    <button type="submit">Send Message</button>
+                    <button type="submit" id="submit-btn">Send Message</button>
                   </div>
                 </div>
               </form>
-            </div>
             
+              <!-- Modal for Thank You Message -->
+              <div id="thank-you-modal" style="display: none;" class="modal">
+                <div class="modal-content">
+                  <p>Thank you for your message! We'll get back to you soon.</p>
+                  <button id="ok-btn">OK</button>
+                </div>
+              </div>
+            </div>
             
           </div>
         </div>
@@ -1042,6 +1048,51 @@
       element.style.display = "none";
       });
       </script>
+
+      <script>
+        document.getElementById("contact-form").addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission behavior
+
+          const form = this;
+
+          // Submit the form data via Fetch API
+          fetch(form.action, {
+            method: "POST",
+            body: new URLSearchParams(new FormData(form)),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.result === "success") {
+                // Show the thank-you modal
+                document.getElementById("thank-you-modal").style.display = "block";
+
+                // Reset the form fields
+                form.reset();
+
+                // Close the modal and refresh the page when OK is clicked
+                document.getElementById("ok-btn").addEventListener("click", function () {
+                  document.getElementById("thank-you-modal").style.display = "none";
+                  location.reload(); // Refresh the page
+                });
+              } else {
+                alert("There was an error submitting your message. Please try again.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("An unexpected error occurred. Please try again later.");
+            });
+        });
+
+        // Optional: Close the modal if clicked outside
+        window.onclick = function (event) {
+          const modal = document.getElementById("thank-you-modal");
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        };
+      </script>
+
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
   </body>
