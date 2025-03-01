@@ -915,8 +915,9 @@
             <div class="col-lg-7">
               <form
                 id="contact-form"
-                action="forms/contact.php"
-                method="post"
+                action="https://script.google.com/macros/s/AKfycbw-wmwFE7npIa1VA_0xZdxHZdlfXZtScHMFdhCz8xjiuNKoq8wZ5zozuiopC_u4T3fA8w/exec"
+                method="POST"
+                target="_blank"
                 class="php-email-form"
                 data-aos="fade-up"
                 data-aos-delay="200"
@@ -926,10 +927,10 @@
                     <label for="name-field" class="pb-2">Your Name</label>
                     <input
                       type="text"
-                      name="name"
+                      name="your-name" 
                       id="name-field"
                       class="form-control"
-                      required=""
+                      required
                     />
                   </div>
             
@@ -938,9 +939,9 @@
                     <input
                       type="email"
                       class="form-control"
-                      name="email"
+                      name="your-email"
                       id="email-field"
-                      required=""
+                      required
                     />
                   </div>
             
@@ -949,9 +950,9 @@
                     <input
                       type="text"
                       class="form-control"
-                      name="subject"
+                      name="your-subject" 
                       id="subject-field"
-                      required=""
+                      required
                     />
                   </div>
             
@@ -959,39 +960,20 @@
                     <label for="message-field" class="pb-2">Message</label>
                     <textarea
                       class="form-control"
-                      name="message"
+                      name="your-message" 
                       rows="10"
                       id="message-field"
-                      required=""
+                      required
                     ></textarea>
                   </div>
             
                   <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">
-                      Thank you for reaching out! However, our service is currently unavailable. Stay tuned for updates! 🦄✨
-                    </div>
-            
-                    <button type="submit" onclick="showUnavailableMessage(event)">Send Message</button>
+                    <button type="submit">Send Message</button>
                   </div>
                 </div>
               </form>
             </div>
             
-            <script>
-              function showUnavailableMessage(event) {
-                event.preventDefault(); // Prevent form submission
-            
-                // Change the message displayed after clicking the "Send Message" button
-                const sentMessageDiv = document.querySelector('.sent-message');
-                sentMessageDiv.innerHTML = "Oops! 😅 Our service is temporarily unavailable. But don't worry, we'll be back soon! 🚀";
-                sentMessageDiv.style.display = "block"; // Show the message
-                
-                // Optionally, hide the loading message and show the "sent" message
-                document.querySelector('.loading').style.display = "none";
-              }
-            </script>
             
           </div>
         </div>
