@@ -1051,46 +1051,60 @@
 
       <script>
         document.getElementById("contact-form").addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent the default form submission behavior
+        event.preventDefault(); // Prevent the default form submission behavior
 
-          const form = this;
+        const form = this;
 
-          // Submit the form data via Fetch API
-          fetch(form.action, {
-            method: "POST",
-            body: new URLSearchParams(new FormData(form)),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              if (data.result === "success") {
-                // Show the thank-you modal
-                document.getElementById("thank-you-modal").style.display = "block";
+        // Log the raw form data as a FormData object
+        // console.log("Raw FormData:", new FormData(form));
 
-                // Reset the form fields
-                form.reset();
-
-                // Close the modal and refresh the page when OK is clicked
-                document.getElementById("ok-btn").addEventListener("click", function () {
-                  document.getElementById("thank-you-modal").style.display = "none";
-                  location.reload(); // Refresh the page
-                });
-              } else {
-                alert("There was an error submitting your message. Please try again.");
-              }
-            })
-            .catch((error) => {
-              console.error("Error:", error);
-              alert("An unexpected error occurred. Please try again later.");
-            });
+        // Convert FormData to a plain object for easier inspection
+        const formDataObject = {};
+        new FormData(form).forEach((value, key) => {
+          formDataObject[key] = value;
         });
+        // console.log("FormData as Object:", formDataObject);
 
-        // Optional: Close the modal if clicked outside
-        window.onclick = function (event) {
-          const modal = document.getElementById("thank-you-modal");
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        };
+        // Submit the form data via Fetch API
+        fetch(form.action, {
+          method: "POST",
+          body: new URLSearchParams(new FormData(form)),
+        })
+          .then((response) => {
+            // console.log("Server Response Status:", response.status); // Log the HTTP status code
+            return response.json();
+          })
+          .then((data) => {
+            if (data.result === "success") {
+              // console.log("Form submitted successfully:", data); // Log the success response
+              document.getElementById("thank-you-modal").style.display = "block";
+
+              // Reset the form fields
+              form.reset();
+
+              // Close the modal and refresh the page when OK is clicked
+              document.getElementById("ok-btn").addEventListener("click", function () {
+                document.getElementById("thank-you-modal").style.display = "none";
+                location.reload(); // Refresh the page
+              });
+            } else {
+              // console.error("Form submission failed:", data); // Log the failure response
+              alert("There was an error submitting your message. Please try again.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error during form submission:", error); // Log any errors
+            alert("An unexpected error occurred. Please try again later.");
+          });
+      });
+
+      // Optional: Close the modal if clicked outside
+      window.onclick = function (event) {
+        const modal = document.getElementById("thank-you-modal");
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
       </script>
 
     <!-- Main JS File -->
